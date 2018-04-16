@@ -46,4 +46,39 @@ int main()
         Burst_Time[pos]=temp;
  
         temp=p[i];
+         p[i]=p[pos];
+        p[pos]=temp;
+    }
+  Waiting_Time[0]=0;            //waiting time for first process will be zero
+ 
+    //calculate waiting time
+    for(i=1;i<process;i++)
+    {
+        Waiting_Time[i]=0;
+        for(j=0;j<i;j++)
+           {
+           		Waiting_Time[i]+=Burst_Time[j];
+		   }
+    }
+    printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
+    for(i=0;i<process;i++)
+    {
+        Turn_Around_Time[i]=Burst_Time[i]+Waiting_Time[i];     //calculate turnaround time
+        printf("\np%d\t\t  %d\t\t    %d\t\t\t%d",p[i],Burst_Time[i],Waiting_Time[i],Turn_Around_Time[i]);
+    }
+ 
+	for(i=0;i<process;i++)
+	{
+		total=total+Waiting_Time[i];
+	}
+	Average_Waiting_Time=(float)total/process;
+    printf("\n\nAverage Waiting Time=%f",Average_Waiting_Time);
+    total=0;
+    for(i=0;i<process;i++)
+	{
+		total=total+Turn_Around_Time[i];
+	}
+	Average_Turn_Around_Time=(float)total/process;
+    printf("\nAverage Turnaround Time=%f\n",Average_Turn_Around_Time);
+  }
  
