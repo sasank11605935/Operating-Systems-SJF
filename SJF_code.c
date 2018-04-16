@@ -30,3 +30,20 @@ int main()
 		printf("P%d : ",i+1);
 		printf("%d\n",Burst_Time[i]);
 	}
+	 for(i=0;i<process;i++)
+    {
+        pos=i;
+        for(j=i+1;j<process;j++)
+        {
+            if(Burst_Time[j]<Burst_Time[pos])
+            {
+            	pos=j;
+			}
+        }
+ 
+        int temp=Burst_Time[i];
+        Burst_Time[i]=Burst_Time[pos];
+        Burst_Time[pos]=temp;
+ 
+        temp=p[i];
+ 
